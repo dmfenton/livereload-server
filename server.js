@@ -15,6 +15,8 @@ if (process.env.LR_SSL_CRT && process.env.LR_SSL_KEY) {
 
 const server = tinylr(options)
 
+process.on('SIGTERM', () => process.exit(0))
+
 server.on('GET /ember-cli-live-reload.js', (req, res) => {
   res.setHeader('content-type', 'application/javascript')
   res.write(`
