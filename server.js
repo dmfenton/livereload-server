@@ -2,7 +2,14 @@ const tinylr = require('tiny-lr')
 
 const port = process.env.SERVER_PORT || 35729
 
-const server = tinylr()
+const options = {}
+
+if (process.env.LR_SSL_CRT && process.env.LR_SSL_KEY) {
+  options.key = fs.readFileSync(process.env.LR_SSL_KEY)
+  options.cert = fs.readFileSync(process.env.LR_SSL_CRT)
+}
+
+const server = tinylr(options)
 
 server.on('GET /ember-cli-live-reload.js', (req, res) => {
   res.setHeader('content-type', 'application/javascript')
