@@ -7,6 +7,8 @@ const options = {}
 if (process.env.LR_SSL_CRT && process.env.LR_SSL_KEY) {
   options.key = fs.readFileSync(process.env.LR_SSL_KEY)
   options.cert = fs.readFileSync(process.env.LR_SSL_CRT)
+	
+	console.log('SSL enabled')
 }
 
 const server = tinylr(options)
