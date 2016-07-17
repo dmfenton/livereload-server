@@ -5,6 +5,8 @@ const port = process.env.SERVER_PORT || 35729
 const options = {}
 
 if (process.env.LR_SSL_CRT && process.env.LR_SSL_KEY) {
+  const fs = require('fs')
+
   options.key = fs.readFileSync(process.env.LR_SSL_KEY)
   options.cert = fs.readFileSync(process.env.LR_SSL_CRT)
 	
